@@ -17,7 +17,8 @@ https.get(url, (response)=> {
         const whetherData =JSON.parse(data)
         console.log(whetherData);
         let temp = whetherData.main.temp
-        res.send(`<h1>Temperature in ${city} is ${temp}</h1>`)
+        let latestTemp = temp -  273;
+        res.send(`<h1>Temperature in ${city} is ${latestTemp.toFixed(2)} <sup>o</sup> C</h1>`)
     })
 })
 })
