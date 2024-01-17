@@ -4,7 +4,7 @@ const https = require('https')
 
 const app = express()
 
-app.use(bodyParser.urlencoded({extended:true})) // took from youtube
+app.use(bodyParser.urlencoded({extended:true})) 
 
 app.get('/', (req, res)=> {
    res.sendFile(__dirname + '/index.html')
@@ -18,7 +18,11 @@ https.get(url, (response)=> {
         console.log(whetherData);
         let temp = whetherData.main.temp
         let latestTemp = temp -  273;
-        res.send(`<h1>Temperature in ${city} is ${latestTemp.toFixed(2)} <sup>o</sup> C</h1>`)
+        let minTemp = whetherData.main.temp_min - 273
+        res.send(`<h1>Temperature in ${city} is ${latestTemp.toFixed(2)} <sup>o</sup> C</h1>
+        <h2>Minimum temperature predicted was ${minTemp.toFixed(2)} <sup>o</sup> C</h2>
+        
+        `)
     })
 })
 })
@@ -29,4 +33,3 @@ app.listen(5000, ()=> {
 
 
 
-// 'https://api.openweathermap.org/data/2.5/weather?q=Bangalore&appid=f58f365721b043ba31e472b34371b343'
